@@ -1,30 +1,43 @@
 
-/* High contrast styles for senior readability */
+:root {
+  --primary: #4F46E5;
+  --secondary: #10B981;
+  --accent: #F59E0B;
+  --dark: #1E293B;
+  --light: #F8FAFC;
+  --text: #000000;
+  --bg: #FFFFFF;
+  --border: 3px solid var(--dark);
+}
+
+/* Responsive base styles */
 body {
-    line-height: 1.8;
-    color: #000000;
-    background-color: #FFFFFF;
-    font-size: 18px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  font-size: clamp(16px, 2vw, 18px);
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
-/* Extra large, high contrast headings */
+
+/* Fluid typography */
 h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #000000;
-    margin-bottom: 1.5rem;
-    word-wrap: break-word;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
+
 h2 {
-    font-size: 2.6rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #000000;
-    border-bottom: 3px solid #4F46E5;
-    padding-bottom: 0.5rem;
-    word-wrap: break-word;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: var(--border);
+  padding-bottom: 0.5rem;
 }
 h3 {
     font-size: 2rem;
@@ -36,32 +49,41 @@ p, li, td {
     color: #000000;
     font-size: 1.1rem;
 }
-/* Maximum contrast for important elements */
-.important-text {
-    color: #FFFFFF;
-    font-weight: 700;
-    background-color: #000000;
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.5rem;
-    font-size: 1.2rem;
-}
-/* High contrast table styling */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 2rem 0;
-    border: 3px solid #000000;
-    table-layout: auto;
-    word-wrap: break-word;
-    min-width: 800px;
+/* Responsive containers */
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
 }
 
-@media (max-width: 992px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        min-width: 100%;
-    }
+/* Adaptive spacing */
+section {
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Touch-friendly interactive elements */
+button, a {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  min-width: 44px;
+  min-height: 44px;
+}
+/* Responsive tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  border: var(--border);
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
 }
 th {
     background-color: #000000;
@@ -139,32 +161,40 @@ button, a {
         overflow-x: auto;
     }
 }
+/* Utility classes */
+.important-text {
+  color: white;
+  background: black;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+}
 
-/* Print styles with extra contrast */
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Flexbox helpers */
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Print styles */
 @media print {
-body {
-        font-size: 16pt;
-        line-height: 2;
-        color: #000000;
-        background-color: #FFFFFF;
-    }
-    
-    .no-print {
-        display: none;
-    }
-    
-    section {
-        page-break-inside: avoid;
-        border: 2px solid #000000;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    h1, h2, h3 {
-        color: #000000;
-    }
-
-    table {
-        border: 3px solid #000000 !important;
-    }
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  .no-print { display: none; }
+  section { page-break-inside: avoid; }
 }
