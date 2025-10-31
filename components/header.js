@@ -1,50 +1,53 @@
+
 class CustomHeader extends HTMLElement {
   connectedCallback() {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
       <style>
         header {
-          background-color: #ffffff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          padding: 1.5rem 0;
+          background: white;
+          padding: 1rem;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          position: sticky;
+          top: 0;
+          z-index: 100;
         }
+        
         .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
           max-width: 1200px;
           margin: 0 auto;
-          padding: 0 1rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
         }
+        
         .logo {
-          font-size: 1.8rem;
+          font-size: clamp(1.5rem, 4vw, 2rem);
           font-weight: 800;
-          color: #4F46E5;
+          color: var(--primary);
           text-decoration: none;
           display: flex;
           align-items: center;
+          gap: 0.5rem;
         }
+        
         .logo span {
-          color: #10B981;
-          margin-left: 0.5rem;
+          color: var(--secondary);
         }
-        .logo-icon {
-          margin-right: 0.75rem;
-          color: #F59E0B;
-        }
+        
         .contact-info {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          color: #64748B;
-          font-size: 0.95rem;
+          text-align: center;
+          font-size: 0.9rem;
+          color: var(--dark);
         }
-        .contact-info strong {
-          color: #1E293B;
-          font-weight: 600;
-        }
-        .header-container {
-          background: linear-gradient(90deg, #FFFFFF 0%, #F8FAFC 100%);
-          padding: 1rem 2rem;
-          border-bottom: 1px solid #E2E8F0;
+        
+        @media (min-width: 768px) {
+          .container {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          .contact-info {
+            text-align: right;
+          }
         }
