@@ -53,7 +53,7 @@
 
   // Link (update to your site or repo)
   const link = document.createElement('a');
-  link.href = 'https://your-domain-or-repo.example'; // ← set your URL
+  link.href = 'https://seguno.github.io/PRP-Compensation-Proposal'; // ← set your URL
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   link.setAttribute('aria-label', 'Made by Segun');
